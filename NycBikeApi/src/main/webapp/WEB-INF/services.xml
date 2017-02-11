@@ -1,0 +1,26 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<import resource="daos.xml"/>
+
+	<bean id="com.nyc.station.status.service.StationStatusService" class="com.nyc.station.status.service.DefaultStationStatusService"/>
+	<bean id="com.nyc.station.info.service.StationInfoService" class="com.nyc.station.info.service.DefaultStationStatusService"/>
+	
+	<bean id="readStreamJob"  class="com.nyc.station.job.read.json.steam.ReadStreamJob" init-method="init">
+		<property name="interval">
+			<value>${streetm-read-interval}</value>
+		</property>
+		<property name="stationInfoURL">
+			<value>${station-info-url}</value>
+		</property>
+		<property name="stationStatusURL">
+			<value>${station-status-url}</value>
+		</property>
+	</bean> 
+ 
+</beans>

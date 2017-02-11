@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="datasource.xml" />
+
+	<bean id="com.nyc.station.entity.service.EntityService" class="com.nyc.station.entity.service.GenericEntityService">
+		<property name="genericHibernateDao" ref="com.nyc.station.entity.dao.GenericHibernateDao"/>
+	</bean>
+	
+	<bean id="com.nyc.station.entity.dao.GenericHibernateDao" class="com.nyc.station.entity.dao.GenericHibernateDao">
+		<property name="entityManagerFactory" ref="emf" />
+	</bean>
+	<bean id="com.nyc.station.status.dao.StationStatusDao" class="com.nyc.station.status.dao.HibernateStationStatusDao">
+		<property name="entityManagerFactory" ref="emf" />
+	</bean>
+	<bean id="com.nyc.station.info.dao.StationInfoDao" class="com.nyc.station.info.dao.HibernateStationInfoDao">
+		<property name="entityManagerFactory" ref="emf" />
+	</bean>
+
+</beans>
